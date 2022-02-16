@@ -1,0 +1,19 @@
+---
+ - name: Create rsyslog config
+   file: 
+    path: /etc/rsyslog.d/graylog.conf
+    state: touch
+ - name: add config
+   blockinfile: 
+    path: /etc/rsyslog.d/graylog.conf
+    marker: ""
+    block: |
+      ##"for udp connection
+      *.* @IPADDRESS:PORT;RSYSLOG_SyslogProtocol23Format
+      ##for tcp connection
+      *.* @@IPADDRESS:PORT;RSYSLOG_SyslogProtocol23Format
+
+ - name: restart service
+   service: 
+    name: rsyslog
+    state: restarted

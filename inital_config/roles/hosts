@@ -1,0 +1,15 @@
+[db-servers]
+
+[test-servers]
+Lu-test ansible_host=10.1.20.38 
+
+
+[servers:children]
+db-servers
+test-servers
+
+[servers:vars]
+
+ansible_password=alabala
+ansible_user=et 
+ansible_become_password=alabala

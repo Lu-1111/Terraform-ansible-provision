@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  become: true
+  roles: 
+  - wazuh-agent
+  - NTP
+  - graylog
+  
+

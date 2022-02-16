@@ -1,0 +1,21 @@
+---
+
+  - name: install ntp
+    apt:
+     name: ntp
+     update_cache: yes
+
+  - name: remove cfg lines
+    lineinfile:
+     dest: /etc/ntp.conf
+     regexp: "{{ item.property }}"
+     line: " {{ item.value }}"
+     state: present 
+    
+    with_items: 
+     - { property: 'pool 0.ubuntu.pool.ntp.org iburst', value: 'IPADDRESS1' }
+     - { property: 'pool 1.ubuntu.pool.ntp.org iburst', value: 'IPADDRESS2' }
+     - { property: 'pool 2.ubuntu.pool.ntp.org iburst', value: 'IPADDRESS3' }
+     - { property: 'pool 3.ubuntu.pool.ntp.org iburst', value: 'IPADDRESS4' }
+
+
